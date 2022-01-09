@@ -10,9 +10,9 @@
 ## 数据处理步骤
 1. 运行`./data_processing/get_csv.py`，获取需要的消息和联系人列表；
 该步骤需要微信数据库`EnMicroMsg.db`以及其密码；
-2. 运行`./data_processing/process_messages.py`，自动处理所有联系人的信息，
-该步骤会生成JSON缓存文件以及`./data_processing/manual_input.csv`
-3. 在`./data_processing/manual_input.csv`中手动输入祝福语
-4. 运行`./data_processing/combine.py`，生成最终JSON文件以供后端调用
-5. 部署前端和后端
-6. 使用`./data_processing/manual_input.csv`中的验证码将在线报告发送给好友
+   1. 运行`./data_processing/process_messages.py`，自动处理所有联系人的信息，
+   该步骤会生成JSON缓存文件以及`./data_processing/manual_input.csv`和`./data_processing/my_wxid.txt`
+2. 在`./data_processing/manual_input.csv`中手动输入祝福语
+3. 运行`./data_processing/combine.py`，生成最终JSON文件以供后端调用
+4. 部署前端和后端
+5. 使用`./data_processing/manual_input.csv`中的验证码将在线报告发送给好友

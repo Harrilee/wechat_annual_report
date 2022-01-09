@@ -151,9 +151,21 @@ def get_user(c):
     outData.to_csv('contact.csv', encoding='UTF-8')
     print("Contacts export finished!")
 
+def get_my_wxid(c):
+    c.execute('''
+            SELECT value
+            FROM userinfo
+            WHERE id=2;
+            ''')
+    result = c.fetchall()
+    my_wxid = result[0][0]
+    with open('./my_wxid.txt', 'w') as f:
+        f.write(my_wxid)
+    print("My WeChat id is: {}".format(my_wxid))
 
 if __name__ == '__main__':
     c = get_db()
+    get_my_wxid(c)
     get_message(c)
     get_user(c)
     c.close()
