@@ -1,9 +1,153 @@
 .mySwiper{
-  background: #a52e30;
+  background: #933536;
   height: 100vh;
 }
 
 .swipe_container{
-  height: 100vh;
-
+  min-height: 100vh;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction: column;
+  color: #fab129;
+  padding: 0 20px;
 }
+
+.swipe_container_left{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+  flex-direction: column;
+  color: #ddbfbf;
+  padding: 0 20px;
+}
+
+.swipe_container_left_top{
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items:flex-start;
+  flex-direction: column;
+  color: #ddbfbf;
+  padding: 0 20px;
+  margin-top: 200px
+}
+.swipe_container_left_bottom{
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items:flex-start;
+  flex-direction: column;
+  color: #ddbfbf;
+  padding: 0 20px;
+  margin-bottom: 100px
+}
+
+.header{
+  font-size: larger;
+  margin: 30px;
+}
+
+.verify_input{
+  font-size: larger;
+  width: 50%;
+  background: transparent;
+  border:#fab129 solid 1px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fab129;
+  padding: 5px;
+  margin: 30px;
+  margin-bottom: 5px;
+}
+
+.tips{
+  color: white;
+  font-size: small;
+  opacity: 0;
+}
+
+.button{
+  color: #933536;
+  background: #fab129;
+  padding: 8px 2em;
+  margin:20px;
+  color: #933536;
+  border-radius: 10px;
+}
+
+.consent{
+  color: white;
+  font-size: smaller;
+  opacity: 0.6;
+}
+
+#page_0{
+  transition: 0.5s;
+}
+
+.swiper-pagination-bullet{
+  opacity: 0 !important;
+}
+
+.music{
+  width:2.5rem;
+  height:2.5rem;
+  position: fixed;
+  z-index: 3;
+  right: 20px;
+  top: 20px;
+  opacity: 0.5;
+  /*animation:rotate 5s infinite;*/
+  /*animation-timing-function: linear;*/
+}
+
+.music_rotate{
+  width:2.5rem;
+  height:2.5rem;
+  position: fixed;
+  z-index: 3;
+  right: 20px;
+  top: 20px;
+  opacity: 0.5;
+  animation:rotate 5s infinite;
+  animation-timing-function: linear;
+}
+@keyframes rotate
+{
+  100%{transform: rotate(360deg);}
+}
+
+.chart{
+  width: 0.9vw;
+}
+
+.keywords_group{
+  text-align: center;
+  width: 100%;
+}
+
+.keywords_group_all{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around
+}
+
+.keywords{
+  color: #fab129;
+  font-size: larger;
+}
+
+.keywords_all{
+  color: #fab129;
+  font-size: larger;
+  margin: 0.1rem 0.5rem;
+}
+
+p{
+  z-index: 3;
+}
+
