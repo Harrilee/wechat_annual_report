@@ -139,8 +139,6 @@ def get_user(c):
         username = item[0]
         avatar = item[1]
         talker = item[4]  # conRemark first
-        if talker == "陈怡":
-            print(i)
         if talker == '':
             talker = item[3]  # nickname next
         if talker == '':
@@ -148,7 +146,6 @@ def get_user(c):
         if talker == '':
             talker = item[0]  # talker/username last
         outData.append((username, avatar, talker))
-        i+=1
     outData = pd.DataFrame(outData)
     outData.columns = ['username', 'avatar', 'alias']
     outData.to_csv('contact.csv', encoding='UTF-8')
