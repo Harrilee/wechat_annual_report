@@ -19,6 +19,7 @@ function MaxDay(props) {
             {`那天我们的关键词是：`}
             <div style={{width:"100%"}}>
                 <p className={'keywords_group_all'}>
+                    <span className={'keywords_all'}>{`${data.stats.max.key0}`}</span>
                     <span className={'keywords_all'}>{`${data.stats.max.key1}`}</span>
                     <span className={'keywords_all'}>{`${data.stats.max.key2}`}</span>
                     <span className={'keywords_all'}>{`${data.stats.max.key3}`}</span>
@@ -27,7 +28,6 @@ function MaxDay(props) {
                     <span className={'keywords_all'}>{`${data.stats.max.key6}`}</span>
                     <span className={'keywords_all'}>{`${data.stats.max.key7}`}</span>
                     <span className={'keywords_all'}>{`${data.stats.max.key8}`}</span>
-                    <span className={'keywords_all'}>{`${data.stats.max.key9}`}</span>
                 </p>
             </div>
         </div>

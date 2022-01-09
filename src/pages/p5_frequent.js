@@ -142,6 +142,7 @@ function Frequent(props) {
                          highcharts={Highcharts}
                          options={options_time}
         />
+        <p className={'consent'} style={{margin: 'auto', marginTop:0, marginBottom:0}}>点击图表浏览详细数据</p>
         <p>
             一周7天里，
             <br />
@@ -152,6 +153,7 @@ function Frequent(props) {
                          highcharts={Highcharts}
                          options={options_week}
         />
+        <p className={'consent'} style={{margin: 'auto', marginTop:0, marginBottom:0}}>点击图表浏览详细数据</p>
     </div>
 }
 

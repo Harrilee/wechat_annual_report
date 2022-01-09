@@ -31,7 +31,7 @@
   flex-direction: column;
   color: #ddbfbf;
   padding: 0 20px;
-  margin-top: 200px
+  margin-top: 180px
 }
 .swipe_container_left_bottom{
   min-height: 100vh;
@@ -81,6 +81,12 @@
   color: white;
   font-size: smaller;
   opacity: 0.6;
+}
+
+.consent a{
+  color: white;
+  font-size: small;
+  opacity: 0.9;
 }
 
 #page_0{
@@ -133,7 +139,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around
+  justify-content: space-around;
+  z-index: 5;
 }
 
 .keywords{
@@ -145,9 +152,24 @@
   color: #fab129;
   font-size: larger;
   margin: 0.1rem 0.5rem;
+  z-index: 5;
 }
 
 p{
   z-index: 3;
 }
+
+.avatar{
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  border-radius: 30px;
+  display: inline-block;
+}
+
+.avatar_container{
+  margin: 10px;
+  margin-top: 30px;
+}
+
 
