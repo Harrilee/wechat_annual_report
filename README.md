@@ -14,4 +14,5 @@
 该步骤会生成JSON缓存文件以及`./data_processing/manual_input.csv`
 3. 在`./data_processing/manual_input.csv`中手动输入祝福语
 4. 运行`./data_processing/combine.py`，生成最终JSON文件以供后端调用
-5. 使用`./data_processing/manual_input.csv`中的验证码将在线报告发送给好友
+5. 部署前端和后端
+6. 使用`./data_processing/manual_input.csv`中的验证码将在线报告发送给好友
