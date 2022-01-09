@@ -15,4 +15,5 @@
 2. 运行`./data_processing/process_messages.py`，自动处理所有联系人的信息，
 该步骤会生成JSON缓存文件以及`./data_processing/manual_input.csv`和`./data_processing/my_wxid.txt`
 3. 在`./data_processing/json`中手动输入祝福语
-4. 部署前端和后端
+4. 运行`./data_processing/export.py`，生成验证码
+5. 部署前端和后端
