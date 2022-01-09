@@ -13,7 +13,8 @@ pd.options.display.min_rows = 500
 pd.options.display.max_rows = 500
 assert os.name != 'nt', "Program currently does not support Windows systems."
 
-conRemarks = [] # TEST ONLY
+conRemarks = []  # TEST ONLY
+
 
 def get_db():
     conn = sqlite.connect("EnMicroMsg.db")
@@ -26,6 +27,7 @@ def get_db():
     c.execute("PRAGMA cipher_page_size = 1024;")
     print("Database connected.")
     return c
+
 
 def group_of(talker, chatroomFlag, alias, conRemark, nickname, contactLabelIds):
     """
@@ -120,19 +122,38 @@ def get_message(c):
     outData.to_csv('message.csv', encoding='UTF-8')
     print("Message export finished!")
 
+
 def get_user(c):
     print("Executing queries for contacts.")
+    #                0                            1                  2     3           4
     c.execute('''
-        SELECT img_flag.username AS username, reserved1 as avatar
-        FROM img_flag
-        JOIN rcontact
+        SELECT rcontact.username AS username, reserved1 as avatar, alias, nickname,conRemark
+        FROM rcontact
+        LEFT JOIN img_flag
         ON img_flag.username = rcontact.username;
         ''')
     result = c.fetchall()
-    outData = pd.DataFrame(result)
-    outData.columns = ['username', 'avatar']
+    outData = []
+    i=0
+    for item in result:
+        username = item[0]
+        avatar = item[1]
+        talker = item[4]  # conRemark first
+        if talker == "陈怡":
+            print(i)
+        if talker == '':
+            talker = item[3]  # nickname next
+        if talker == '':
+            talker = item[2]  # alias next
+        if talker == '':
+            talker = item[0]  # talker/username last
+        outData.append((username, avatar, talker))
+        i+=1
+    outData = pd.DataFrame(outData)
+    outData.columns = ['username', 'avatar', 'alias']
     outData.to_csv('contact.csv', encoding='UTF-8')
     print("Contacts export finished!")
+
 
 if __name__ == '__main__':
     c = get_db()
