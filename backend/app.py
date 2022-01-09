@@ -11,8 +11,12 @@ def code():
     return json.dumps({
         "success":True,
         "data":{
+            "my":{
+                "avatar":"https://wx.qlogo.cn/mmhead/ver_1/4GbibQLtT5HeFyMa4AcIeYjqoCNr5LNmPmC6GL6bHATFR7snLcd5iaZnicyqiaWahHlTGFUU5a6bsmr21WgW6rZRX6e7micRokFWaXib5cLWISUJQ/0"
+            },
             "user":{
                 "username":"用户名",
+                "avatar":"http://wx.qlogo.cn/mmhead/Q3auHgzwzM6Z0RfeVq5YFCnia9xJCKQAQCWgd90icay0LxicYRzfP8ccA/0",
                 "par":{
                     "end":"对你单独写的"
                 }
