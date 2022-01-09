@@ -5,6 +5,10 @@ function Begin(props) {
     return (
         <div className={'swipe_container'}>
             <img src={fu} width={'40%'}/>
+            <div className={"avatar_container"}>
+                <div className={'avatar'} style={{backgroundImage: `url(${data.my.avatar})`, transform:`translateX(7px)`, zIndex:3}} />
+                <div className={'avatar'} style={{backgroundImage: `url(${data.user.avatar})`, transform:`translateX(-7px)`}}/>
+            </div>
             <br />
             <div>
                 <p>{data.user.username+'您好，'}</p>

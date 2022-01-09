@@ -19,14 +19,19 @@ function MaxNight(props) {
         </p>
         <div style={{width:"100%"}}>
             {`那天我们的关键词是：`}
-            <p className={'keywords_group'}>
-                <span className={'keywords'}>{`${data.stats.latest.key1}`}</span>
-                <br/>
-                <span className={'keywords'}>{`${data.stats.latest.key2}`}</span>
-                <br/>
-                <span className={'keywords'}>{`${data.stats.latest.key3}`}</span>
-            </p>
-
+            <div style={{width:"100%"}}>
+                <p className={'keywords_group_all'}>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key1}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key2}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key3}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key4}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key5}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key6}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key7}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key8}`}</span>
+                    <span className={'keywords_all'}>{`${data.stats.latest.key9}`}</span>
+                </p>
+            </div>
         </div>
         <p>
             {data.par.latest}

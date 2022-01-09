@@ -9,7 +9,7 @@ function End(props) {
         <p>
             2021年，
             <br />
-            我们的年度10大关键词是
+            我们的年度关键词是
         </p>
         <div style={{width:"100%"}}>
             <p className={'keywords_group_all'}>
@@ -23,13 +23,21 @@ function End(props) {
                 <span className={'keywords_all'}>{`${data.stats.total.key7}`}</span>
                 <span className={'keywords_all'}>{`${data.stats.total.key8}`}</span>
                 <span className={'keywords_all'}>{`${data.stats.total.key9}`}</span>
+                <span className={'keywords_all'}>{`${data.stats.total.key10}`}</span>
+                <span className={'keywords_all'}>{`${data.stats.total.key11}`}</span>
+                <span className={'keywords_all'}>{`${data.stats.total.key12}`}</span>
+                <span className={'keywords_all'}>{`${data.stats.total.key13}`}</span>
+                <span className={'keywords_all'}>{`${data.stats.total.key14}`}</span>
             </p>
-
         </div>
         <p>
             {data.user.par.end}
         </p>
-        <br/><br/>
+        <br/>
+        <p className={'consent'}>
+            作者GitHub@Harrilee，代码转送门👉
+            <a href={"https://github.com/Harrilee/wechat_annual_report"}>GitHub repo</a>
+        </p>
     </div>
 }
 
