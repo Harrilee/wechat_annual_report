@@ -111,7 +111,7 @@ def process(message, contact, username, my_wxid, message_raw):
     contin_start = moment.date(2021, 1, 1).add(days=contin_index).date
     contin_end = moment.date(2021, 1, 1).add(days=contin_index + contin_last_days - 1).date
 
-    # 聊天最晚的一天 todo
+    # 聊天最晚的一天
     # _根据消息时间排序，06:00最大，06:01最小
     user_message['unix_time_difference'] = (user_message['time'] - 1609365600000) % (24 * 36e5)
     latest_sorted_user_msg = user_message.sort_values(by=['unix_time_difference'], inplace=False, ascending=False)
