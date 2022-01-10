@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // Import Swiper React components
 import {Swiper, SwiperSlide} from "swiper/react";
-import "swiper/css";
+// import "swiper/css";
 // Import slides
 import Verification from "./pages/p0_verification";
 import Begin from "./pages/p1_begin";
@@ -19,7 +19,7 @@ import HighchartsReact from 'highcharts-react-official'
 import config from "./config";
 
 import musicLogo from './img/music.svg'
-import texture from './img/texture.png'
+import texture from './img/texture.jpg'
 
 
 // import Swiper core and required modules
@@ -78,7 +78,7 @@ function App() {
     })
     if (!data) {
         return (
-            <div className={'mySwiper'}>
+            <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`,backgroundSize: "cover"}}>
                 <Verification setData={setData}/>
             </div>
         )

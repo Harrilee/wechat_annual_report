@@ -1,5 +1,4 @@
-import Begin from "./p1_begin";
-import fireworks from "../img/fireworks.svg";
+import fireworks from "../img/fireworks.gif";
 import * as moment from 'moment';
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'

@@ -752,10 +752,11 @@ module.exports = function (webpackEnv) {
     externals: {
       'react': 'React',
       'react-dom': "ReactDOM",
-      // 'highcharts': "Highcharts",
-      // "highcharts-react-official":"HighchartsReact",
+      'Highcharts': "highcharts",
+      // "highcharts-react-official":"ReactHighcharts",
       "moment":"moment",
-      // "swiper/react": 'Swiper',
+      // "swiper": 'Swiper',
+      // "swiper-slide":"SwiperSlide",
       // "swiper/css": 'Swiper',
     }
   };

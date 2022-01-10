@@ -1,5 +1,5 @@
-import fu from '../img/fu.svg'
-import avatar from '../img/avatar.png'
+import fu from '../img/fu.gif'
+import avatar from '../img/avatar.jpg'
 function Begin(props) {
     const {data} = props
     return (

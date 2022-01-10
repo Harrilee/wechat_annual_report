@@ -1,7 +1,7 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import yanhua from "../img/yanhua.svg";
-import tiger from "../img/tiger.png";
+import yanhua from "../img/yanhua.gif";
+import tiger from "../img/tiger.gif";
 function Frequent(props) {
     const {data} = props;
     const options_time = {

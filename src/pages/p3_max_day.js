@@ -1,5 +1,5 @@
-import fishes from '../img/fishes.png'
-import nianhuo from '../img/nianhuo.png'
+import fishes from '../img/fishes.gif'
+import nianhuo from '../img/nianhuo.gif'
 
 function MaxDay(props) {
     const {data} = props;

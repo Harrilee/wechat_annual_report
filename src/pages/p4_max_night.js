@@ -1,5 +1,5 @@
-import jishi from '../img/jishi.png'
-import lanten from '../img/lanten.svg'
+import jishi from '../img/jishi.gif'
+import lanten from '../img/lanten.gif'
 function MaxNight(props) {
     const {data} = props;
 

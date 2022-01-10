@@ -1,4 +1,4 @@
-import xinchunhaonian from '../img/xinchunhaonian.png'
+import xinchunhaonian from '../img/xinchunhaonian.gif'
 
 
 function End(props) {
