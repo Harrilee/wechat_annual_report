@@ -39,42 +39,42 @@ import yanhua from "./img/yanhua.gif";
 import tiger from "./img/tiger.gif";
 import xinchunhaonian from './img/xinchunhaonian.gif'
 import fishes from './img/fishes.gif'
-const preload_img_list = [lock,fu, avatar, fireworks, nianhuo, jishi, lanten, yanhua, tiger,
-musicLogo, texture, xinchunhaonian, fishes]
+
+const preload_img_list = [lock, fu, avatar, fireworks, nianhuo, jishi, lanten, yanhua, tiger,
+    musicLogo, texture, xinchunhaonian, fishes]
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
 Highcharts.setOptions({
-    lang:{
-        contextButtonTitle:"图表导出菜单",
-        decimalPoint:".",
-        downloadJPEG:"下载JPEG图片",
-        downloadPDF:"下载PDF文件",
-        downloadPNG:"下载PNG文件",
-        downloadSVG:"下载SVG文件",
-        drillUpText:"返回 {series.name}",
-        loading:"加载中",
-        months:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-        noData:"没有数据",
-        numericSymbols: [ "千" , "兆" , "G" , "T" , "P" , "E"],
-        printChart:"打印图表",
-        resetZoom:"恢复缩放",
-        resetZoomTitle:"恢复图表",
-        shortMonths: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-        thousandsSep:",",
-        weekdays: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六","星期天"]
+    lang: {
+        contextButtonTitle: "图表导出菜单",
+        decimalPoint: ".",
+        downloadJPEG: "下载JPEG图片",
+        downloadPDF: "下载PDF文件",
+        downloadPNG: "下载PNG文件",
+        downloadSVG: "下载SVG文件",
+        drillUpText: "返回 {series.name}",
+        loading: "加载中",
+        months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        noData: "没有数据",
+        numericSymbols: ["千", "兆", "G", "T", "P", "E"],
+        printChart: "打印图表",
+        resetZoom: "恢复缩放",
+        resetZoomTitle: "恢复图表",
+        shortMonths: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        thousandsSep: ",",
+        weekdays: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天"]
     },
 })
 
 function MusicLogo() {
     const [play, setPlay] = React.useState(true)
     return (
-        <img src={musicLogo} className={play ? 'music_rotate' : 'music'} alt={'music logo'} onClick={()=>{
-            if(play){
+        <img src={musicLogo} className={play ? 'music_rotate' : 'music'} alt={'music logo'} onClick={() => {
+            if (play) {
                 document.getElementById('bgAudio').pause();
-            }
-            else{
+            } else {
                 document.getElementById('bgAudio').play();
             }
             setPlay(!play);
@@ -82,14 +82,28 @@ function MusicLogo() {
     )
 }
 
+function BgAudio() {
+    return (
+        <audio muted autoPlay id={'bgAudio'} loop>
+            <source
+                src={config.bgAudio.src1_url}
+                type={config.bgAudio.src1_type}/>
+            <source src={config.bgAudio.src2_url} type={config.bgAudio.src2_type}/>
+            Your browser does not support the audio element.
+        </audio>
+    )
+}
+
 function App() {
     let [data, setData] = React.useState(null)
     React.useEffect(() => {
+        document.getElementById("bgAudio").muted = false;
+        document.getElementById("bgAudio").muted = true;
         if (data && document.getElementById("bgAudio")) {
             document.getElementById("bgAudio").muted = false;
         }
         // image preload
-        preload_img_list.forEach(url=>{
+        preload_img_list.forEach(url => {
             var img = new Image()
             img.src = url
             img.hidden = true
@@ -99,31 +113,19 @@ function App() {
     })
     if (!data) {
         return (
-            <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`,backgroundSize: "cover"}}>
+            <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`, backgroundSize: "cover"}}>
                 <Verification setData={setData}/>
-                <audio muted autoPlay id={'bgAudio'} loop>
-                    <source
-                        src={config.bgAudio.src1_url}
-                        type={config.bgAudio.src1_type}/>
-                    <source src={config.bgAudio.src2_url} type={config.bgAudio.src2_type}/>
-                    Your browser does not support the audio element.
-                </audio>
+                <BgAudio/>
             </div>
         )
     }
     return (
         <>
-            <audio muted autoPlay id={'bgAudio'} loop>
-                <source
-                    src={config.bgAudio.src1_url}
-                    type={config.bgAudio.src1_type}/>
-                <source src={config.bgAudio.src2_url} type={config.bgAudio.src2_type}/>
-                Your browser does not support the audio element.
-            </audio>
+            <BgAudio/>
             <MusicLogo/>
             <Swiper className="mySwiper" direction={'vertical'} pagination={{
                 "clickable": true,
-            }} style={{backgroundImage: `url(${texture})`,backgroundSize: "cover"}}>
+            }} style={{backgroundImage: `url(${texture})`, backgroundSize: "cover"}}>
                 <SwiperSlide><Begin data={data}/></SwiperSlide>
                 <SwiperSlide><Total data={data}/></SwiperSlide>
                 <SwiperSlide><MaxDay data={data}/></SwiperSlide>

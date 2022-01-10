@@ -21,9 +21,9 @@ function Verification(props) {
             }).then(d => {
                 if (d.success) {
                     document.getElementById('page_0').style.opacity = 0
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         setData(d.data)
-                    },500)
+                    }, 500)
                 } else if (d.success === false) {
                     document.getElementById('tips').style.opacity = 0.7
                 } else {
