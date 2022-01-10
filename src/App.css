@@ -13,6 +13,13 @@
   padding: 0 20px;
 }
 
+.center_container{
+  display: flex;
+  justify-content:center;
+  align-items:flex-start;
+  flex-direction: column;
+}
+
 .swipe_container_left{
   min-height: 100vh;
   display: flex;
