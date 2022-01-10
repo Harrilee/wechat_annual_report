@@ -69,6 +69,7 @@ def process(message, contact, username, my_wxid, message_raw):
     # 双方基本信息
     contact_info = contact.loc[username]
     my_info = contact.loc[my_wxid]
+    contact_wxid_list = list(contact.index)
 
     # 双方对话
     user_message = message[(message['talker_raw'] == username)]
@@ -89,7 +90,7 @@ def process(message, contact, username, my_wxid, message_raw):
 
     # 所有消息关键词
     messages = get_useable_msg_list(user_message)
-    all_word_count = word_count.count(" ".join(messages), contact_info['alias'])
+    all_word_count = word_count.count(" ".join(messages), contact_info['alias'],contact_wxid_list)
 
     # 最早的记录
     earlist_date = moment.unix(int(user_message_raw.loc[0]['time'] / 1000)).date
@@ -103,7 +104,7 @@ def process(message, contact, username, my_wxid, message_raw):
         (user_message['time'] > max_unix_start * 1000) & (user_message['time'] < max_unix_end * 1000)) \
         .dropna(thresh=2)  # 当天的消息
     max_message_list = get_useable_msg_list(max_message_df)
-    max_message_count = word_count.count(" ".join(max_message_list), contact_info['alias'])
+    max_message_count = word_count.count(" ".join(max_message_list), contact_info['alias'],contact_wxid_list)
 
     # 持续最久的聊天时间
     contin_index, contin_last_days = get_max_index_and_length(chatCount)
@@ -135,7 +136,7 @@ def process(message, contact, username, my_wxid, message_raw):
         (user_message['time'] >= latest_time - 4 * 36e5) & (user_message['time'] <= latest_time)) \
         .dropna(thresh=2)
     latest_msg_in_4_hour_usable = get_useable_msg_list(latest_msg_in_4_hour)
-    latest_word_count = word_count.count(" ".join(latest_msg_in_4_hour_usable), contact_info['alias'])
+    latest_word_count = word_count.count(" ".join(latest_msg_in_4_hour_usable), contact_info['alias'],contact_wxid_list)
 
     # 最爱聊天的时段
     frequent_words = ['午夜12点', '凌晨3点', '凌晨6点', '上午9点', '中午12点', '下午3点', '晚上6点', '晚上9点']
