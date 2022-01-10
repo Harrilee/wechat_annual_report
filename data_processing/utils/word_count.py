@@ -26,7 +26,7 @@ def count(word_string, username=""):
             word_count[r] = 1
     keys = list(word_count.keys())
     for key in keys:
-        if key in stopwords or key.encode('utf-8').isalnum() or key in username:
+        if key.lower() in stopwords or key in username:
             word_count.pop(key)
     return sorted(word_count.items(), key=lambda d: d[1], reverse=True)
 
