@@ -37,7 +37,10 @@ import jishi from './img/jishi.gif'
 import lanten from './img/lanten.gif'
 import yanhua from "./img/yanhua.gif";
 import tiger from "./img/tiger.gif";
-const preload_img_list = [lock,fu, avatar, fireworks, nianhuo, jishi, lanten, yanhua, tiger]
+import xinchunhaonian from './img/xinchunhaonian.gif'
+import fishes from './img/fishes.gif'
+const preload_img_list = [lock,fu, avatar, fireworks, nianhuo, jishi, lanten, yanhua, tiger,
+musicLogo, texture, xinchunhaonian, fishes]
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
