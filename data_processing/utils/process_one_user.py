@@ -10,6 +10,31 @@ import moment
 from utils import word_count
 
 
+def get_max_index_and_length(lissy: list) -> (int, int):
+    """
+    给定一个数组，求其最大连续非0项的长度和起始indeex
+    :param lissy: 给定的数组
+    :return: 起始编号、最大长度
+    """
+    max_length = 0
+    current_length = 0
+    max_index = 0
+    current_index = 0
+    for i in range(len(lissy)):
+        if lissy[i] != 0:
+            current_length += 1
+        else:
+            if current_length > max_length:
+                max_length = current_length
+                max_index = current_index
+            current_index = i + 1
+            current_length = 0
+    if current_length > max_length:
+        max_length = current_length
+        max_index = current_index
+    return max_index, max_length
+
+
 def get_useable_msg_list(user_message):
     """
     根据用户消息列表筛选出对词频分析有价值的消息列表
@@ -75,14 +100,37 @@ def process(message, contact, username, my_wxid, message_raw):
     max_message_list = get_useable_msg_list(max_message_df)
     max_message_count = word_count.count(" ".join(max_message_list), contact_info['alias'])
 
-    # 持续最久的聊天时间 todo
+    # 持续最久的聊天时间
+    contin_index, contin_last_days = get_max_index_and_length(chatCount)
+    contin_start = moment.date(2021, 1, 1).add(days=contin_index).date
+    contin_end = moment.date(2021, 1, 1).add(days=contin_index + contin_last_days - 1).date
 
     # 聊天最晚的一天 todo
     # _根据消息时间排序，06:00最大，06:01最小
-
+    user_message['unix_time_difference'] = (user_message['time'] - 1609365600000) % (24 * 36e5)
+    latest_sorted_user_msg = user_message.sort_values(by=['unix_time_difference'], inplace=False, ascending=False)
     # _按顺序搜索，看是否满足
-
+    latest_search_flag = False
+    for item in latest_sorted_user_msg.iterrows():
+        latest_msg_in_5_min = user_message.where(
+            (user_message['time'] >= item[1]['time']-3e5) & (user_message['time'] <= item[1]['time'])) \
+            .dropna(thresh=2)
+        latest_msg_in_5_min_sum = latest_msg_in_5_min['is_send'].sum()
+        if latest_msg_in_5_min_sum < len(latest_msg_in_5_min) and latest_msg_in_5_min_sum>0:
+            latest_search_flag = True
+            break
+    if not latest_search_flag:  # 找不到5分钟内聊天的情况
+        print("用户{}无法匹配到5分钟内的最后聊天信息，将自动使用最后一条进行匹配".format(contact_info['alias']))
+        for item in latest_sorted_user_msg.iterrows():
+            break
     # _筛选出满足条件的日期之前4个小时的所有聊天内容，获取高频词
+    latest_time = item[1]['time']
+    latest_date = moment.unix(int(latest_time/1000)).date
+    latest_msg_in_4_hour = user_message.where(
+        (user_message['time'] >= latest_time - 4*36e5) & (user_message['time'] <= latest_time)) \
+        .dropna(thresh=2)
+    latest_msg_in_4_hour_usable = get_useable_msg_list(latest_msg_in_4_hour)
+    latest_word_count = word_count.count(" ".join(latest_msg_in_4_hour_usable), contact_info['alias'])
 
     # 最爱聊天的时段
     frequent_words = ['午夜12点', '凌晨3点', '凌晨6点', '上午9点', '中午12点', '下午3点', '晚上6点', '晚上9点']
@@ -135,11 +183,11 @@ def process(message, contact, username, my_wxid, message_raw):
                 "key14": all_word_count[14][0],
             },
             "contin": {
-                "startMonth": 1,
-                "startDay": 25,
-                "endMonth": 12,
-                "endDay": 25,
-                "days": 208
+                "startMonth": int(contin_start.strftime("%m")),
+                "startDay": int(contin_start.strftime("%d")),
+                "endMonth": int(contin_end.strftime("%m")),
+                "endDay": int(contin_end.strftime("%d")),
+                "days": contin_last_days
             },
             "max": {
                 "month": int(max_date.strftime("%m")),
@@ -156,18 +204,18 @@ def process(message, contact, username, my_wxid, message_raw):
                 "key8": max_message_count[8][0] if len(max_message_count) > 8 else "",
             },
             "latest": {
-                "month": 7,
-                "day": 30,
-                "mmss": "05:35",
-                "key1": "关键词1",
-                "key2": "关键词2",
-                "key3": "关键词3",
-                "key4": "关键词4",
-                "key5": "关键词5",
-                "key6": "关键词6",
-                "key7": "关键词7",
-                "key8": "关键词8",
-                "key9": "关键词9",
+                "month": int(latest_date.strftime("%m")),
+                "day": int(latest_date.strftime("%d")),
+                "mmss": latest_date.strftime("%H:%M"),
+                "key0": latest_word_count[0][0] if len(latest_word_count) > 0 else "",
+                "key1": latest_word_count[1][0] if len(latest_word_count) > 1 else "",
+                "key2": latest_word_count[2][0] if len(latest_word_count) > 2 else "",
+                "key3": latest_word_count[3][0] if len(latest_word_count) > 3 else "",
+                "key4": latest_word_count[4][0] if len(latest_word_count) > 4 else "",
+                "key5": latest_word_count[5][0] if len(latest_word_count) > 5 else "",
+                "key6": latest_word_count[6][0] if len(latest_word_count) > 6 else "",
+                "key7": latest_word_count[7][0] if len(latest_word_count) > 7 else "",
+                "key8": latest_word_count[8][0] if len(latest_word_count) > 8 else "",
             },
             "frequent": {
                 "start": frequent_words[frequent_time_slot_index],
@@ -183,3 +231,7 @@ def process(message, contact, username, my_wxid, message_raw):
     }
     with open('./output/json/{}.json'.format(username), 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False)
+
+
+if __name__ == '__main__':
+    pass
