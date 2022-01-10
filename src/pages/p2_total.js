@@ -7,8 +7,9 @@ import {screen} from "@testing-library/react";
 
 function Total(props) {
     const {data} = props;
-    const first_day = moment(data.stats.earlist.year + '-' + 'data.stats.earlist.month' + '-' + 'data.stats.earlist.day', 'YYYY-MM-DD')
+    const first_day = moment(new Date(data.stats.earlist.year,data.stats.earlist.month-1,data.stats.earlist.day))
     const last_days = moment().diff(first_day, 'd')
+    console.log(first_day)
     const options = {
         chart: {
             type: 'area',
