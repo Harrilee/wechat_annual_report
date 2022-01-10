@@ -17,12 +17,12 @@ conRemarks = []  # TEST ONLY
 
 
 def get_db():
-    conn = sqlite.connect("EnMicroMsg.db")
+    conn = sqlite.connect("../../EnMicroMsg.db")
     print("Connecting database...")
     c = conn.cursor()
     c.execute("PRAGMA cipher_compatibility = 3;")
     c.execute("PRAGMA cipher_default_kdf_iter = 4000;")
-    c.execute("PRAGMA key='af86324';")
+    c.execute("PRAGMA key='2017264';")
     c.execute("PRAGMA cipher_use_hmac = OFF;")
     c.execute("PRAGMA cipher_page_size = 1024;")
     print("Database connected.")
@@ -38,8 +38,8 @@ def group_of(talker, chatroomFlag, alias, conRemark, nickname, contactLabelIds):
     :param contactLabelIds: 标签
     :return: If we do not want to ignore the item, return the group name, else return false
     """
-    COLLEGE_GROUP_LIST = ['Stevenlice', 'Harry & Songyi', 'Gaviris', '三个人', '三人帮', 'H₃OBE', '哼哈哈哦']
-    FAMILY_GROUP_LIST = ['李小豆不准吃饼干']
+    COLLEGE_GROUP_LIST = ['528', '时代好青年']
+    FAMILY_GROUP_LIST = ['大家庭']
     GROUP_LIST = COLLEGE_GROUP_LIST + FAMILY_GROUP_LIST
     BLACK_LIST = ['文件传输助手', 'filehelper']
     if talker in BLACK_LIST:
