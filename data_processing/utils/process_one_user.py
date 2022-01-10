@@ -8,6 +8,7 @@ import json
 import datetime
 import moment
 from utils import word_count
+from utils import parse_content
 
 
 def get_max_index_and_length(lissy: list) -> (int, int):
@@ -44,10 +45,14 @@ def get_useable_msg_list(user_message):
     messages = []  # 消息列表
     for item in user_message.iterrows():
         # 用粗暴的办法排除掉xml消息类型
-        if "<msg>" not in str(item[1]['content']) and \
-                "<?xml>" not in str(item[1]['content']) and \
-                str(item[1]['content'])[:4] not in ['null', 'wxid']:
-            messages.append(str(item[1]['content']))
+        # if "<msg>" not in str(item[1]['content']) and \
+        #         "<?xml>" not in str(item[1]['content']) and \
+        #         str(item[1]['content'])[:4] not in ['null', 'wxid']:
+        #     messages.append(str(item[1]['content']))
+        parse_res = parse_content.parse(str(item[1]['content']))
+        if parse_res != None:
+            messages.append(parse_res)
+            
     return messages
 
 

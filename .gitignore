@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.idea
+.vscode
+data_processing/utils/__pycache__
+data_processing/output
+data_processing/my_wxid.txt
+data_processing/message.csv
+data_processing/contact.csv
+data_processing/EnMicroMsg.db
+data_processing/__pycache__

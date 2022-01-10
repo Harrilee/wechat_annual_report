@@ -1,0 +1,5 @@
+pandas
+tqdm
+pysqlcipher3
+moment
+jieba
