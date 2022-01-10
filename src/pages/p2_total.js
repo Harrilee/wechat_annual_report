@@ -2,7 +2,6 @@ import fireworks from "../img/fireworks.gif";
 import * as moment from 'moment';
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import {screen} from "@testing-library/react";
 
 function Total(props) {
     const {data} = props;

@@ -755,9 +755,7 @@ module.exports = function (webpackEnv) {
       'Highcharts': "highcharts",
       // "highcharts-react-official":"ReactHighcharts",
       "moment":"moment",
-      // "swiper": 'Swiper',
-      // "swiper-slide":"SwiperSlide",
-      // "swiper/css": 'Swiper',
+      "swiper": 'Swiper',
     }
   };
 };

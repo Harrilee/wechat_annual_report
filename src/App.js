@@ -27,7 +27,17 @@ import SwiperCore, {
     Pagination
 } from 'swiper';
 
-
+// image preload
+import lock from './img/lock.svg'
+import fu from './img/fu.gif'
+import avatar from './img/avatar.jpg'
+import fireworks from "./img/fireworks.gif";
+import nianhuo from './img/nianhuo.gif'
+import jishi from './img/jishi.gif'
+import lanten from './img/lanten.gif'
+import yanhua from "./img/yanhua.gif";
+import tiger from "./img/tiger.gif";
+const preload_img_list = [lock,fu, avatar, fireworks, nianhuo, jishi, lanten, yanhua, tiger]
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
@@ -72,14 +82,29 @@ function MusicLogo() {
 function App() {
     let [data, setData] = React.useState(null)
     React.useEffect(() => {
-        if (document.getElementById("bgAudio")) {
+        if (data && document.getElementById("bgAudio")) {
             document.getElementById("bgAudio").muted = false;
         }
+        // image preload
+        preload_img_list.forEach(url=>{
+            var img = new Image()
+            img.src = url
+            img.hidden = true
+            document.body.appendChild(img)
+        })
+
     })
     if (!data) {
         return (
             <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`,backgroundSize: "cover"}}>
                 <Verification setData={setData}/>
+                <audio muted autoPlay id={'bgAudio'} loop>
+                    <source
+                        src={config.bgAudio.src1_url}
+                        type={config.bgAudio.src1_type}/>
+                    <source src={config.bgAudio.src2_url} type={config.bgAudio.src2_type}/>
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         )
     }
