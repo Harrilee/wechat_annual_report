@@ -6,7 +6,7 @@ function Verification(props) {
     function verify() {
         let code = document.getElementById('code').value.toLowerCase()
         if (code.length === 6) {
-            fetch("http://localhost:5000/code", {
+            fetch("https://harrilee.site/wx2022/code", {
                 mode: 'cors',
                 method: 'POST',
                 headers: {
