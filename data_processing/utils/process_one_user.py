@@ -152,6 +152,8 @@ def process(message, contact, username, my_wxid, message_raw):
         },
         "user": {
             "username": contact_info['alias'],
+            "wxid": username,
+            "alias": contact_info['alias'],
             "avatar": contact_info['avatar'],
             "par": {
                 "end": config.default_msg
