@@ -1,5 +1,5 @@
 import fu from '../img/fu.svg'
-
+import avatar from '../img/avatar.png'
 function Begin(props) {
     const {data} = props
     return (
@@ -7,7 +7,7 @@ function Begin(props) {
             <img src={fu} width={'40%'}/>
             <div className={"avatar_container"}>
                 <div className={'avatar'} style={{backgroundImage: `url(${data.my.avatar})`, transform:`translateX(7px)`, zIndex:3}} />
-                <div className={'avatar'} style={{backgroundImage: `url(${data.user.avatar})`, transform:`translateX(-7px)`}}/>
+                <div className={'avatar'} style={{backgroundImage: `url(${data.user.avatar===''?avatar:data.user.avatar})`, transform:`translateX(-7px)`}}/>
             </div>
             <br />
             <div>
