@@ -4,7 +4,7 @@ import nianhuo from '../img/nianhuo.gif'
 function MaxDay(props) {
     const {data} = props;
 
-    return <div className={'swipe_container_left_top'}>
+    return <div className={'swipe_container_left_top'} style={{marginTop: window.innerWidth*0.5}}>
         <img src={fishes} width={"100%"} style={{position: 'absolute', top: 0, right: 0}}/>
         <img src={nianhuo} width={"100%"} style={{position: 'absolute', bottom: 0, right: 0}}/>
         <div className={'center_container'} style={{minHeight: window.innerHeight - window.innerWidth}}>
