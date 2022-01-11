@@ -179,4 +179,14 @@ p{
   margin-top: 30px;
 }
 
+.UA_constraint{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: column;
+  font-size: large;
+  color:#fab129;
+}
+
 

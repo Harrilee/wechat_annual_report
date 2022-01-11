@@ -46,6 +46,8 @@ const preload_img_list = [lock, fu, avatar, fireworks, nianhuo, jishi, lanten, y
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
+const is_phone = navigator.userAgent.indexOf('iPhone') !== -1 || navigator.userAgent.indexOf('Android') !== -1
+
 Highcharts.setOptions({
     lang: {
         contextButtonTitle: "图表导出菜单",
@@ -97,20 +99,37 @@ function BgAudio() {
 function App() {
     let [data, setData] = React.useState(null)
     React.useEffect(() => {
-        document.getElementById("bgAudio").muted = false;
-        document.getElementById("bgAudio").muted = true;
-        if (data && document.getElementById("bgAudio")) {
+        if (is_phone) {
             document.getElementById("bgAudio").muted = false;
+            document.getElementById("bgAudio").muted = true;
+            if (data && document.getElementById("bgAudio")) {
+                document.getElementById("bgAudio").muted = false;
+            }
+            // image preload
+            preload_img_list.forEach(url => {
+                var img = new Image()
+                img.src = url
+                img.hidden = true
+                document.body.appendChild(img)
+            })
         }
-        // image preload
-        preload_img_list.forEach(url => {
-            var img = new Image()
-            img.src = url
-            img.hidden = true
-            document.body.appendChild(img)
-        })
 
     })
+    console.log(navigator.userAgent)
+    if (!is_phone) {
+        return (
+            <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`, backgroundSize: "cover"}}>
+                <div className={'UA_constraint'}>
+                    <p>
+                        请使用手机浏览器查看此页面
+                    </p>
+                    <p>
+                        推荐使用微信打开此页面
+                    </p>
+                </div>
+            </div>
+        )
+    }
     if (!data) {
         return (
             <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`, backgroundSize: "cover"}}>
