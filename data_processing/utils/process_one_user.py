@@ -90,7 +90,7 @@ def process(message, contact, username, my_wxid, message_raw):
 
     # 所有消息关键词
     messages = get_useable_msg_list(user_message)
-    all_word_count = word_count.count(" ".join(messages), contact_info['alias'],contact_wxid_list)
+    all_word_count = word_count.count(" ".join(messages), contact_info['alias'], contact_wxid_list)
 
     # 最早的记录
     earlist_date = moment.unix(int(user_message_raw.loc[0]['time'] / 1000)).date
@@ -104,7 +104,7 @@ def process(message, contact, username, my_wxid, message_raw):
         (user_message['time'] > max_unix_start * 1000) & (user_message['time'] < max_unix_end * 1000)) \
         .dropna(thresh=2)  # 当天的消息
     max_message_list = get_useable_msg_list(max_message_df)
-    max_message_count = word_count.count(" ".join(max_message_list), contact_info['alias'],contact_wxid_list)
+    max_message_count = word_count.count(" ".join(max_message_list), contact_info['alias'], contact_wxid_list)
 
     # 持续最久的聊天时间
     contin_index, contin_last_days = get_max_index_and_length(chatCount)
@@ -115,7 +115,7 @@ def process(message, contact, username, my_wxid, message_raw):
     # _撤回的消息应该算作is_send=1"
     for i in range(len(user_message)):
         if user_message.loc[i]['content'] in ['You recalled a message.', '你撤回了一条消息']:
-            user_message.loc[i]['is_send'] = 1
+            user_message.loc[i, 'is_send'] = 1
     # _根据消息时间排序，06:00最大，06:01最小
     user_message['unix_time_difference'] = (user_message['time'] - 1609365600000) % (24 * 36e5)
     latest_sorted_user_msg = user_message.sort_values(by=['unix_time_difference'], inplace=False, ascending=False)
@@ -140,7 +140,8 @@ def process(message, contact, username, my_wxid, message_raw):
         (user_message['time'] >= latest_time - 4 * 36e5) & (user_message['time'] <= latest_time)) \
         .dropna(thresh=2)
     latest_msg_in_4_hour_usable = get_useable_msg_list(latest_msg_in_4_hour)
-    latest_word_count = word_count.count(" ".join(latest_msg_in_4_hour_usable), contact_info['alias'],contact_wxid_list)
+    latest_word_count = word_count.count(" ".join(latest_msg_in_4_hour_usable), contact_info['alias'],
+                                         contact_wxid_list)
 
     # 最爱聊天的时段
     frequent_words = ['午夜12点', '凌晨3点', '凌晨6点', '上午9点', '中午12点', '下午3点', '晚上6点', '晚上9点']
