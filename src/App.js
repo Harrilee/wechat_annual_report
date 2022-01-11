@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import ReactDOM from 'react-dom';
 // Import Swiper React components
 import {Swiper, SwiperSlide} from "swiper/react";
 // import "swiper/css";
@@ -14,7 +13,6 @@ import Frequent from "./pages/p5_frequent";
 import End from './pages/p6_end'
 
 import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
 
 import config from "./config";
 
@@ -46,7 +44,7 @@ const preload_img_list = [lock, fu, avatar, fireworks, nianhuo, jishi, lanten, y
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
-const is_phone = navigator.userAgent.indexOf('iPhone') !== -1 || navigator.userAgent.indexOf('Android') !== -1
+const is_phone = navigator.userAgent.indexOf('iPhone') !== -1 || navigator.userAgent.indexOf('Android') !== -1 || navigator.userAgent.indexOf('iPad') !== -1
 
 Highcharts.setOptions({
     lang: {
