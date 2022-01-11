@@ -112,6 +112,10 @@ def process(message, contact, username, my_wxid, message_raw):
     contin_end = moment.date(2021, 1, 1).add(days=contin_index + contin_last_days - 1).date
 
     # 聊天最晚的一天
+    # _撤回的消息应该算作is_send=1"
+    for i in range(len(user_message)):
+        if user_message.loc[i]['content'] in ['You recalled a message.', '你撤回了一条消息']:
+            user_message.loc[i]['is_send'] = 1
     # _根据消息时间排序，06:00最大，06:01最小
     user_message['unix_time_difference'] = (user_message['time'] - 1609365600000) % (24 * 36e5)
     latest_sorted_user_msg = user_message.sort_values(by=['unix_time_difference'], inplace=False, ascending=False)
