@@ -97,8 +97,6 @@ function BgAudio() {
 function App() {
     let [data, setData] = React.useState(null)
     React.useEffect(() => {
-        document.body.style.backgroundImage=`url(${texture})`
-        document.html.style.backgroundImage=`url(${texture})`
         if (is_phone) {
             document.getElementById("bgAudio").muted = false;
             document.getElementById("bgAudio").muted = true;
