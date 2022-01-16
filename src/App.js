@@ -113,7 +113,6 @@ function App() {
         }
 
     })
-    console.log(navigator.userAgent)
     if (!is_phone) {
         return (
             <div className={'mySwiper'} style={{backgroundImage: `url(${texture})`, backgroundSize: "cover"}}>
