@@ -31,9 +31,13 @@ function End(props) {
                     <span className={'keywords_all'}>{`${data.stats.total.key14}`}</span>
                 </p>
             </div>
-            <p>
-                {data.user.par.end}
-            </p>
+            <div>
+                {
+                    data.user.par.end.split('\n').map((e, i) => {
+                        return <p key={i}>{e}</p>
+                    })
+                }
+            </div>
         </div>
         <br/>
         <p className={'consent'}>
