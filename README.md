@@ -17,3 +17,7 @@
 3. 在`./data_processing/json`中手动输入祝福语
 4. 运行`./data_processing/export.py`，生成验证码
 5. 部署前端和后端
+
+## 阅读更多
+1. 我的微信聊天数据可视化面板：https://github.com/Harrilee/chatting_life
+2. 微信聊天记录提取相关：https://github.com/godweiyang/wechat-explore
